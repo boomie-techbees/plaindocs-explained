@@ -143,9 +143,9 @@ function PlainDocsPage() {
           <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             Understand any document in minutes
           </h1>
-          <p className="mt-2 text-sm text-muted-foreground sm:text-base">
-            Paste or upload any document (e.g. a contract, terms of service, policy, etc).
-            Get a plain-language breakdown of your rights, risks, and what to watch out for.
+          <p className="mt-2 text-sm text-muted-foreground sm:text-base whitespace-pre-line">
+            Paste or upload any document (e.g. a contract, terms of service, policy, etc). 
+            {"\n"}Get a plain-language breakdown of your rights, risks, and what to watch out for.
           </p>
         </div>
       </header>
