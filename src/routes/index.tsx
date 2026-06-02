@@ -226,7 +226,7 @@ function PlainDocsPage() {
                 Language quality varies.
               </p>
               <p className="mt-0.5 text-[11px] leading-tight text-muted-foreground">
-                Results are AI-generated and not legal advice.
+                Results are AI-generated.
               </p>
             </div>
 
