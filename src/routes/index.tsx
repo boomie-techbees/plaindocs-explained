@@ -170,15 +170,15 @@ function PlainDocsPage() {
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="text" className="gap-2">
                 <FileText className="h-4 w-4" />
-                Paste text
-              </TabsTrigger>
-              <TabsTrigger value="url" className="gap-2">
-                <Link className="h-4 w-4" />
-                Paste URL
+                Text
               </TabsTrigger>
               <TabsTrigger value="pdf" className="gap-2">
                 <Upload className="h-4 w-4" />
-                Upload PDF
+                PDF
+              </TabsTrigger>
+              <TabsTrigger value="url" className="gap-2">
+                <Link className="h-4 w-4" />
+                URL
               </TabsTrigger>
             </TabsList>
 
