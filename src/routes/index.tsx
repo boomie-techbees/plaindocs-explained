@@ -96,7 +96,7 @@ function PlainDocsPage() {
       } else {
         if (!file) return;
         if (file.size > MAX_PDF_BYTES) {
-          toast.error("PDF too large. Max 10 MB.");
+          toast.error("PDF too large. Max 4 MB.");
           return;
         }
         const document = await fileToBase64(file);
