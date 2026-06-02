@@ -192,7 +192,7 @@ function PlainDocsPage() {
                 <div className="text-xs text-muted-foreground">
                   {file
                     ? `${(file.size / 1024 / 1024).toFixed(2)} MB`
-                    : "Max 10 MB"}
+                    : "Max 4 MB"}
                 </div>
                 <input
                   id="doc-pdf"
