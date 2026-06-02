@@ -36,18 +36,18 @@ export const Route = createFileRoute("/")({
 });
 
 const API_URL = "https://6tbzx4c751.execute-api.us-east-1.amazonaws.com/explain";
-const MAX_PDF_BYTES = 10 * 1024 * 1024; // 10 MB
+const MAX_PDF_BYTES = 4 * 1024 * 1024; // 4 MB
 
 const LANGUAGES = [
+  "Chinese",
   "English",
-  "Spanish",
   "French",
   "German",
-  "Portuguese",
   "Japanese",
-  "Chinese",
-  "Yoruba",
   "Krio",
+  "Portuguese",
+  "Spanish",
+  "Yoruba",
 ] as const;
 
 type Item = { label: string; description: string };
