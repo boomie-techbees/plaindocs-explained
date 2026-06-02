@@ -223,7 +223,10 @@ function PlainDocsPage() {
                 </SelectContent>
               </Select>
               <p className="mt-1.5 text-[11px] leading-tight text-muted-foreground">
-                Language quality varies. Results are AI-generated and not legal advice.
+                Language quality varies.
+              </p>
+              <p className="mt-0.5 text-[11px] leading-tight text-muted-foreground">
+                Results are AI-generated and not legal advice.
               </p>
             </div>
 
