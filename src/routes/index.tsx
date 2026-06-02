@@ -36,18 +36,18 @@ export const Route = createFileRoute("/")({
 });
 
 const API_URL = "https://6tbzx4c751.execute-api.us-east-1.amazonaws.com/explain";
-const MAX_PDF_BYTES = 10 * 1024 * 1024; // 10 MB
+const MAX_PDF_BYTES = 4 * 1024 * 1024; // 4 MB
 
 const LANGUAGES = [
+  "Chinese",
   "English",
-  "Spanish",
   "French",
   "German",
-  "Portuguese",
   "Japanese",
-  "Chinese",
-  "Yoruba",
   "Krio",
+  "Portuguese",
+  "Spanish",
+  "Yoruba",
 ] as const;
 
 type Item = { label: string; description: string };
@@ -96,7 +96,7 @@ function PlainDocsPage() {
       } else {
         if (!file) return;
         if (file.size > MAX_PDF_BYTES) {
-          toast.error("PDF too large. Max 10 MB.");
+          toast.error("PDF too large. Max 4 MB.");
           return;
         }
         const document = await fileToBase64(file);
@@ -192,7 +192,7 @@ function PlainDocsPage() {
                 <div className="text-xs text-muted-foreground">
                   {file
                     ? `${(file.size / 1024 / 1024).toFixed(2)} MB`
-                    : "Max 10 MB"}
+                    : "Max 4 MB"}
                 </div>
                 <input
                   id="doc-pdf"
@@ -222,6 +222,9 @@ function PlainDocsPage() {
                   ))}
                 </SelectContent>
               </Select>
+              <p className="mt-1.5 text-[11px] leading-tight text-muted-foreground">
+                Language quality varies. Results are AI-generated and not legal advice.
+              </p>
             </div>
 
             <Button
@@ -250,6 +253,9 @@ function PlainDocsPage() {
 
         {result && (
           <section className="mt-10 space-y-8">
+            <p className="text-xs text-muted-foreground">
+              Explained in: {language}
+            </p>
             <div>
               <SectionHeading icon={<FileText className="h-4 w-4" />} title="Summary" />
               <p className="mt-3 text-[15px] leading-relaxed text-foreground">
