@@ -2,7 +2,7 @@
 
 **Understand any document in minutes.**
 
-PlainDocs is an AI-powered document explainer that breaks down legal documents, terms of service, contracts, and policies into plain language — no legal background required. Upload a PDF or paste text, choose your output language, and get a structured breakdown instantly.
+PlainDocs is an AI-powered document explainer that breaks down legal documents, terms of service, contracts, and policies into plain language — no legal background required. Upload a PDF, paste text, or enter a URL, choose your output language, and get a structured breakdown instantly.
 
 Built by [Boomie Odumade](https://techbees.me) · Part of the [TechBees app portfolio](https://techbees.me/apps)
 
@@ -39,8 +39,6 @@ Amazon Bedrock — Nova Lite
 | Amazon Bedrock (Nova Lite) | Document analysis and plain-language summary generation |
 | AWS Lambda | Backend logic — receives document, calls Bedrock, returns structured JSON |
 | Amazon API Gateway | HTTP endpoint — routes POST requests from the frontend to Lambda |
-| Amazon S3 *(Stage 2)* | Document storage |
-| Amazon Textract *(Stage 2)* | Enhanced parsing for scanned docs, tables, and complex forms |
 | Amazon Cognito *(Stage 3)* | User auth for saved results |
 | Amazon DynamoDB *(Stage 3)* | Store and retrieve past analyses |
 | Bedrock Guardrails *(Stage 5)* | Content safety, PII redaction |
@@ -49,16 +47,16 @@ Amazon Bedrock — Nova Lite
 
 ## Build Stages
 
-### ✅ Stage 1 — MVD (Current)
+### ✅ Stage 1 — MVP
 - Paste text or upload a PDF
 - Structured plain-language output in 9 languages
 - Powered by Amazon Bedrock Nova Lite via Lambda + API Gateway
 - Built with Lovable (React frontend)
 
-### 🔜 Stage 2 — Better Document Handling
-- URL input (paste a link instead of uploading)
-- Improved parsing for scanned docs and forms via Amazon Textract
-- Support for additional file types (.docx)
+### ✅ Stage 2 — URL Input
+- Paste a URL instead of uploading or copying text
+- Detects PDF vs HTML automatically and routes accordingly
+- Better error handling for inaccessible URLs
 
 ### 🔜 Stage 3 — Structured Output + User Accounts
 - Risk scoring and flagged clauses
@@ -72,6 +70,12 @@ Amazon Bedrock — Nova Lite
 ### 🔜 Stage 5 — Safety & Compliance Layer
 - Content safety filters and PII redaction via Bedrock Guardrails
 - Topic controls for sensitive document types
+
+### 🔜 Stage 6 — Potential Future Work
+- Scanned document support via Amazon Textract
+- User-facing toggle for scanned vs digital documents
+- .docx file support
+- Voice output of results
 
 ---
 
