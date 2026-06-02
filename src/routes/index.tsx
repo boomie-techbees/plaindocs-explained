@@ -253,6 +253,9 @@ function PlainDocsPage() {
 
         {result && (
           <section className="mt-10 space-y-8">
+            <p className="text-xs text-muted-foreground">
+              Explained in: {language}
+            </p>
             <div>
               <SectionHeading icon={<FileText className="h-4 w-4" />} title="Summary" />
               <p className="mt-3 text-[15px] leading-relaxed text-foreground">
