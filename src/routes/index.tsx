@@ -134,16 +134,16 @@ function PlainDocsPage() {
     <div className="min-h-screen bg-background">
       <Toaster richColors position="top-center" />
 
-      <header className="border-b border-border">
-        <div className="mx-auto max-w-3xl px-6 py-10">
-          <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-            <FileSearch className="h-3.5 w-3.5" />
+      <header className="border-b border-border bg-card">
+        <div className="mx-auto max-w-3xl px-6 py-12">
+          <div className="flex items-center gap-2 text-sm font-medium uppercase tracking-[0.18em] text-teal">
+            <FileSearch className="h-4 w-4" />
             PlainDocs
           </div>
           <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             Understand any document in minutes
           </h1>
-          <p className="mt-2 text-sm text-muted-foreground sm:text-base whitespace-pre-line">
+          <p className="mt-2 text-sm text-muted-foreground sm:text-base font-light whitespace-pre-line">
             Paste or upload any document (e.g. a contract, terms of service, policy, etc). 
             {"\n"}Get a plain-language breakdown of your rights, risks, and what to watch out for.
           </p>
@@ -234,7 +234,7 @@ function PlainDocsPage() {
               onClick={handleSubmit}
               disabled={!canSubmit}
               size="lg"
-              className="sm:min-w-40"
+              className="sm:min-w-40 bg-teal text-teal-foreground hover:bg-teal/90"
             >
               {loading ? (
                 <>
@@ -255,11 +255,11 @@ function PlainDocsPage() {
         )}
 
         {result && (
-          <section className="mt-10 space-y-8">
-            <p className="text-xs text-muted-foreground">
+          <section className="mt-10 space-y-6">
+            <span className="inline-flex items-center rounded-full bg-teal/10 px-3 py-1 text-xs font-medium text-teal">
               Explained in: {language}
-            </p>
-            <div>
+            </span>
+            <div className="rounded-lg border-l-4 border-l-teal bg-card p-6 shadow-sm">
               <SectionHeading icon={<FileText className="h-4 w-4" />} title="Summary" />
               <p className="mt-3 text-[15px] leading-relaxed text-foreground">
                 {result.summary}
@@ -304,7 +304,7 @@ function PlainDocsPage() {
 function SectionHeading({ icon, title }: { icon: React.ReactNode; title: string }) {
   return (
     <div className="flex items-center gap-2 border-b border-border pb-2">
-      <span className="text-muted-foreground">{icon}</span>
+      <span className="text-teal">{icon}</span>
       <h2 className="text-lg font-semibold tracking-tight text-foreground">{title}</h2>
     </div>
   );
@@ -320,7 +320,7 @@ function ItemList({
   items: Item[];
 }) {
   return (
-    <div>
+    <div className="rounded-lg border-l-4 border-l-teal bg-card p-6 shadow-sm">
       <SectionHeading icon={icon} title={title} />
       {items && items.length > 0 ? (
         <ul className="mt-3 space-y-3">
