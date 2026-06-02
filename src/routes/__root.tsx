@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "PlainDocs" },
+      { name: "description", content: "Understand any document in plain language. Upload a PDF or paste text and get an instant breakdown of your rights, risks, and what to watch out for." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "PlainDocs" },
+      { property: "og:description", content: "Understand any document in plain language. Upload a PDF or paste text and get an instant breakdown of your rights, risks, and what to watch out for." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "PlainDocs" },
+      { name: "twitter:description", content: "Understand any document in plain language. Upload a PDF or paste text and get an instant breakdown of your rights, risks, and what to watch out for." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/fad4d598-1f61-44ef-9ab5-dc6445606440" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/fad4d598-1f61-44ef-9ab5-dc6445606440" },
     ],
     links: [
       {
