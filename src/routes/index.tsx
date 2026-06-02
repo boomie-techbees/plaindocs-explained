@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
-import { FileText, Upload, Loader2, ShieldCheck, AlertTriangle, Eye, FileSearch } from "lucide-react";
+import { FileText, Upload, Link, Loader2, ShieldCheck, AlertTriangle, Eye, FileSearch } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -73,16 +73,22 @@ function fileToBase64(file: File): Promise<string> {
 }
 
 function PlainDocsPage() {
-  const [mode, setMode] = useState<"text" | "pdf">("text");
+  const [mode, setMode] = useState<"text" | "pdf" | "url">("text");
   const [text, setText] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const [url, setUrl] = useState("");
   const [language, setLanguage] = useState<string>("English");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<ApiResult | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const canSubmit =
-    !loading && (mode === "text" ? text.trim().length > 0 : file !== null);
+    !loading &&
+    (mode === "text"
+      ? text.trim().length > 0
+      : mode === "pdf"
+        ? file !== null
+        : url.trim().length > 0);
 
   async function handleSubmit() {
     setError(null);
@@ -93,7 +99,7 @@ function PlainDocsPage() {
       if (mode === "text") {
         if (!text.trim()) return;
         body = { text: text.trim(), language };
-      } else {
+      } else if (mode === "pdf") {
         if (!file) return;
         if (file.size > MAX_PDF_BYTES) {
           toast.error("PDF too large. Max 4 MB.");
@@ -101,6 +107,14 @@ function PlainDocsPage() {
         }
         const document = await fileToBase64(file);
         body = { document, language };
+      } else {
+        const trimmed = url.trim();
+        if (!trimmed) return;
+        if (!/^https?:\/\//i.test(trimmed)) {
+          toast.error("URL must start with http:// or https://");
+          return;
+        }
+        body = { url: trimmed, language };
       }
     } catch (e) {
       const msg = e instanceof Error ? e.message : "Failed to prepare request";
@@ -152,11 +166,15 @@ function PlainDocsPage() {
 
       <main className="mx-auto max-w-3xl px-6 py-10">
         <section className="rounded-xl border border-border bg-card p-6 shadow-sm">
-          <Tabs value={mode} onValueChange={(v) => setMode(v as "text" | "pdf")}>
-            <TabsList className="grid w-full grid-cols-2">
+          <Tabs value={mode} onValueChange={(v) => setMode(v as "text" | "pdf" | "url")}>
+            <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="text" className="gap-2">
                 <FileText className="h-4 w-4" />
                 Paste text
+              </TabsTrigger>
+              <TabsTrigger value="url" className="gap-2">
+                <Link className="h-4 w-4" />
+                Paste URL
               </TabsTrigger>
               <TabsTrigger value="pdf" className="gap-2">
                 <Upload className="h-4 w-4" />
@@ -177,6 +195,23 @@ function PlainDocsPage() {
               />
               <p className="mt-2 text-xs text-muted-foreground">
                 {text.length.toLocaleString()} characters
+              </p>
+            </TabsContent>
+
+            <TabsContent value="url" className="mt-4">
+              <Label htmlFor="doc-url" className="sr-only">
+                Document URL
+              </Label>
+              <input
+                id="doc-url"
+                type="text"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                placeholder="https://example.com/terms"
+                className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+              />
+              <p className="mt-2 text-xs text-muted-foreground">
+                Must start with http:// or https://
               </p>
             </TabsContent>
 
