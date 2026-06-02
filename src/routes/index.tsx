@@ -144,8 +144,8 @@ function PlainDocsPage() {
             Understand any document in minutes
           </h1>
           <p className="mt-2 text-sm text-muted-foreground sm:text-base">
-            Paste a contract, terms of service, or policy — get a plain-language
-            breakdown of your rights, risks, and what to watch out for.
+            Paste or upload any document (e.g. a contract, terms of service, policy, etc).
+            Get a plain-language breakdown of your rights, risks, and what to watch out for.
           </p>
         </div>
       </header>
@@ -223,7 +223,10 @@ function PlainDocsPage() {
                 </SelectContent>
               </Select>
               <p className="mt-1.5 text-[11px] leading-tight text-muted-foreground">
-                Language quality varies. Results are AI-generated and not legal advice.
+                Language quality varies.
+              </p>
+              <p className="mt-0.5 text-[11px] leading-tight text-muted-foreground">
+                Results are AI-generated and not legal advice.
               </p>
             </div>
 
