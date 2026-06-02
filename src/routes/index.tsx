@@ -99,7 +99,7 @@ function PlainDocsPage() {
       if (mode === "text") {
         if (!text.trim()) return;
         body = { text: text.trim(), language };
-      } else {
+      } else if (mode === "pdf") {
         if (!file) return;
         if (file.size > MAX_PDF_BYTES) {
           toast.error("PDF too large. Max 4 MB.");
@@ -107,6 +107,14 @@ function PlainDocsPage() {
         }
         const document = await fileToBase64(file);
         body = { document, language };
+      } else {
+        const trimmed = url.trim();
+        if (!trimmed) return;
+        if (!/^https?:\/\//i.test(trimmed)) {
+          toast.error("URL must start with http:// or https://");
+          return;
+        }
+        body = { url: trimmed, language };
       }
     } catch (e) {
       const msg = e instanceof Error ? e.message : "Failed to prepare request";
@@ -158,11 +166,15 @@ function PlainDocsPage() {
 
       <main className="mx-auto max-w-3xl px-6 py-10">
         <section className="rounded-xl border border-border bg-card p-6 shadow-sm">
-          <Tabs value={mode} onValueChange={(v) => setMode(v as "text" | "pdf")}>
-            <TabsList className="grid w-full grid-cols-2">
+          <Tabs value={mode} onValueChange={(v) => setMode(v as "text" | "pdf" | "url")}>
+            <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="text" className="gap-2">
                 <FileText className="h-4 w-4" />
                 Paste text
+              </TabsTrigger>
+              <TabsTrigger value="url" className="gap-2">
+                <Link className="h-4 w-4" />
+                Paste URL
               </TabsTrigger>
               <TabsTrigger value="pdf" className="gap-2">
                 <Upload className="h-4 w-4" />
