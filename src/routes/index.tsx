@@ -144,8 +144,8 @@ function PlainDocsPage() {
             Understand any document in minutes
           </h1>
           <p className="mt-2 text-sm text-muted-foreground sm:text-base">
-            Paste a contract, terms of service, or policy — get a plain-language
-            breakdown of your rights, risks, and what to watch out for.
+            Paste or upload any document (e.g. a contract, terms of service, policy, etc).
+            Get a plain-language breakdown of your rights, risks, and what to watch out for.
           </p>
         </div>
       </header>
