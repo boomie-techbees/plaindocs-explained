@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
-import { FileText, Upload, Loader2, ShieldCheck, AlertTriangle, Eye, FileSearch } from "lucide-react";
+import { FileText, Upload, Link, Loader2, ShieldCheck, AlertTriangle, Eye, FileSearch } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -73,16 +73,22 @@ function fileToBase64(file: File): Promise<string> {
 }
 
 function PlainDocsPage() {
-  const [mode, setMode] = useState<"text" | "pdf">("text");
+  const [mode, setMode] = useState<"text" | "pdf" | "url">("text");
   const [text, setText] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const [url, setUrl] = useState("");
   const [language, setLanguage] = useState<string>("English");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<ApiResult | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const canSubmit =
-    !loading && (mode === "text" ? text.trim().length > 0 : file !== null);
+    !loading &&
+    (mode === "text"
+      ? text.trim().length > 0
+      : mode === "pdf"
+        ? file !== null
+        : url.trim().length > 0);
 
   async function handleSubmit() {
     setError(null);
