@@ -202,6 +202,10 @@ function PlainDocsPage() {
                   onChange={(e) => setFile(e.target.files?.[0] ?? null)}
                 />
               </label>
+              <p className="mt-3 flex items-center gap-1.5 text-xs text-muted-foreground">
+                <AlertTriangle className="h-3.5 w-3.5 shrink-0" />
+                Do not upload documents containing sensitive personal information, passwords, or confidential data.
+              </p>
             </TabsContent>
           </Tabs>
 
