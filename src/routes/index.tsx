@@ -170,15 +170,15 @@ function PlainDocsPage() {
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="text" className="gap-2">
                 <FileText className="h-4 w-4" />
-                Paste text
-              </TabsTrigger>
-              <TabsTrigger value="url" className="gap-2">
-                <Link className="h-4 w-4" />
-                Paste URL
+                Text
               </TabsTrigger>
               <TabsTrigger value="pdf" className="gap-2">
                 <Upload className="h-4 w-4" />
-                Upload PDF
+                PDF
+              </TabsTrigger>
+              <TabsTrigger value="url" className="gap-2">
+                <Link className="h-4 w-4" />
+                URL
               </TabsTrigger>
             </TabsList>
 
@@ -195,23 +195,6 @@ function PlainDocsPage() {
               />
               <p className="mt-2 text-xs text-muted-foreground">
                 {text.length.toLocaleString()} characters
-              </p>
-            </TabsContent>
-
-            <TabsContent value="url" className="mt-4">
-              <Label htmlFor="doc-url" className="sr-only">
-                Document URL
-              </Label>
-              <input
-                id="doc-url"
-                type="text"
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-                placeholder="https://example.com/terms"
-                className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-              />
-              <p className="mt-2 text-xs text-muted-foreground">
-                Must start with http:// or https://
               </p>
             </TabsContent>
 
@@ -240,6 +223,23 @@ function PlainDocsPage() {
               <p className="mt-3 flex items-center gap-1.5 text-xs text-muted-foreground">
                 <AlertTriangle className="h-3.5 w-3.5 shrink-0" />
                 Do not upload documents containing sensitive personal information, passwords, or confidential data.
+              </p>
+            </TabsContent>
+
+            <TabsContent value="url" className="mt-4">
+              <Label htmlFor="doc-url" className="sr-only">
+                Document URL
+              </Label>
+              <input
+                id="doc-url"
+                type="text"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                placeholder="https://example.com/terms"
+                className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+              />
+              <p className="mt-2 text-xs text-muted-foreground">
+                Must start with http:// or https://
               </p>
             </TabsContent>
           </Tabs>
