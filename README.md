@@ -20,6 +20,8 @@ Most people click "agree" without reading. PlainDocs changes that — without re
 
 Supports multiple output languages including English, Spanish, French, German, Portuguese, Japanese, Chinese, Yoruba, and Krio.
 
+> **Note:** PlainDocs is not intended for sensitive or confidential documents. Do not upload documents containing personal, financial, or private information.
+
 ---
 
 ## Architecture
@@ -32,6 +34,8 @@ Amazon API Gateway (HTTP API)
 AWS Lambda (Python 3.14)
     ↓
 Amazon Bedrock — Nova Lite
+    ↓
+Amazon DynamoDB (Stage 3+)
 ```
 
 | Service | Role |
@@ -39,9 +43,9 @@ Amazon Bedrock — Nova Lite
 | Amazon Bedrock (Nova Lite) | Document analysis and plain-language summary generation |
 | AWS Lambda | Backend logic — receives document, calls Bedrock, returns structured JSON |
 | Amazon API Gateway | HTTP endpoint — routes POST requests from the frontend to Lambda |
-| Amazon Cognito *(Stage 3)* | User auth for saved results |
-| Amazon DynamoDB *(Stage 3)* | Store and retrieve past analyses |
-| Bedrock Guardrails *(Stage 5)* | Content safety, PII redaction |
+| Amazon DynamoDB *(Stage 3)* | Store analysis results |
+| Bedrock Guardrails *(Stage 4)* | Content safety and PII redaction |
+| Amazon Cognito *(Stage 5)* | User authentication |
 
 ---
 
@@ -56,24 +60,26 @@ Amazon Bedrock — Nova Lite
 ### ✅ Stage 2 — URL Input
 - Paste a URL instead of uploading or copying text
 - Detects PDF vs HTML automatically and routes accordingly
-- Better error handling for inaccessible URLs
+- Improved error handling for inaccessible URLs
 
-### 🔜 Stage 3 — Structured Output + User Accounts
-- Risk scoring and flagged clauses
-- User accounts via Amazon Cognito
-- Save and retrieve past analyses via Amazon DynamoDB
+### 🔜 Stage 3 — DynamoDB
+- Every successful analysis saved to Amazon DynamoDB in the background
+- Captures timestamp, input type, language, and summary
 
-### 🔜 Stage 4 — Shareable Results
-- Every analysis generates a shareable link
-- Builds on DynamoDB + Cognito from Stage 3
-
-### 🔜 Stage 5 — Safety & Compliance Layer
+### 🔜 Stage 4 — Bedrock Guardrails
 - Content safety filters and PII redaction via Bedrock Guardrails
-- Topic controls for sensitive document types
+- Replaces the manual sensitive data warning with actual enforcement
 
-### 🔜 Stage 6 — Potential Future Work
-- Scanned document support via Amazon Textract
-- User-facing toggle for scanned vs digital documents
+### 🔜 Stage 5 — Auth + History
+- User accounts via Amazon Cognito
+- View and revisit past analyses
+
+### 🔜 Stage 6 — Private Doc Mode
+- Authenticated users can analyze sensitive or confidential documents safely
+- Results stored privately per user
+
+### 🔜 Future Work
+- Scanned document support via Amazon Textract (with user-facing toggle)
 - .docx file support
 - Voice output of results
 
