@@ -165,22 +165,22 @@ function PlainDocsPage() {
       <Toaster richColors position="top-center" />
 
       <header className="border-b border-border bg-card">
-        <div className="mx-auto max-w-3xl px-6 py-12">
+        <div className="mx-auto max-w-3xl px-6 py-6 sm:py-8">
           <div className="flex items-center gap-2 text-sm font-medium uppercase tracking-[0.18em] text-teal">
             <FileSearch className="h-4 w-4" />
             PlainDocs
           </div>
-          <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+          <h1 className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             Understand any document in minutes
           </h1>
-          <p className="mt-2 text-sm text-muted-foreground sm:text-base font-light whitespace-pre-line">
-            Paste or upload or link to any document (e.g. a contract, terms of service, policy, etc).
-            {"\n\n"}Get a plain-language breakdown of your rights, risks, and what to watch out for.
+          <p className="mt-2 text-sm text-muted-foreground sm:text-base font-light">
+            Paste, upload, or link to any document (e.g. a contract, terms of service, policy, etc).
+            Get a plain-language breakdown of your rights, risks, and what to watch out for.
           </p>
         </div>
       </header>
 
-      <main className="mx-auto max-w-3xl px-6 py-10">
+      <main className="mx-auto max-w-3xl px-6 py-6">
         <section className="rounded-xl border border-border bg-card p-6 shadow-sm">
           <Tabs value={mode} onValueChange={(v) => setMode(v as "text" | "pdf" | "url")}>
             <TabsList className="grid w-full grid-cols-3">
