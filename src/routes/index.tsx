@@ -131,7 +131,14 @@ function PlainDocsPage() {
         body: JSON.stringify(body),
       });
       if (!res.ok) {
-        throw new Error(`Request failed (${res.status})`);
+        let errMsg = `Request failed (${res.status})`;
+        try {
+          const errBody = (await res.json()) as { error?: string };
+          if (errBody.error) errMsg = errBody.error;
+        } catch {
+          // ignore parse failure, use fallback
+        }
+        throw new Error(errMsg);
       }
       const data = (await res.json()) as ApiResult;
       setResult(data);
