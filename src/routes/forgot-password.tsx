@@ -87,7 +87,7 @@ function ForgotPasswordPage() {
           <div>
             <Label htmlFor="newPassword">New password</Label>
             <Input id="newPassword" type="password" autoComplete="new-password" minLength={8} required value={newPassword} onChange={(e) => setNewPassword(e.target.value)} className="mt-1.5" />
-            <p className="mt-1 text-xs text-muted-foreground">At least 8 characters.</p>
+            <p className="mt-1 text-xs text-muted-foreground">At least 8 characters, must include a number, a special character, an uppercase letter, and a lowercase letter.</p>
           </div>
           {error && <p className="text-sm text-destructive">{error}</p>}
           <Button type="submit" disabled={loading} className="w-full bg-teal text-teal-foreground hover:bg-teal/90">
