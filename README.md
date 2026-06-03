@@ -23,7 +23,7 @@ Most people click "agree" without reading. PlainDocs changes that — without re
 
 Supports multiple output languages including English, Spanish, French, German, Portuguese, Japanese, Chinese, Yoruba, and Krio.
 
-> **Note:** PlainDocs includes PII redaction via Bedrock Guardrails. However, it is not intended for sensitive or confidential documents.
+> **Note:** PlainDocs includes PII redaction via Bedrock Guardrails. Authenticated users can enable Private mode for sensitive or confidential documents.
 
 ---
 
@@ -81,7 +81,7 @@ Amazon DynamoDB
 - User accounts via Amazon Cognito
 - View and revisit past analyses
 
-### 🔜 Stage 6 — Private Doc Mode
+### ✅ Stage 6 — Private Doc Mode
 - Authenticated users can analyze sensitive or confidential documents safely
 - Results stored privately per user
 
