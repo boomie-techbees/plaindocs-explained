@@ -124,8 +124,9 @@ function HistoryPage() {
               key={item.id ?? idx}
               className="rounded-xl border border-border bg-card p-4 transition-colors hover:bg-accent/30"
             >
-              <p className="text-sm text-foreground">
-                {item.summary_preview ?? "(no summary)"}
+              <p className="flex items-start gap-1.5 text-sm text-foreground">
+                {item.is_private && <Lock className="mt-0.5 h-3.5 w-3.5 shrink-0 text-teal" aria-label="Private" />}
+                <span>{item.summary_preview ?? "(no summary)"}</span>
               </p>
               <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground">
                 {item.input_type && <span className="uppercase tracking-wide">{item.input_type}</span>}
