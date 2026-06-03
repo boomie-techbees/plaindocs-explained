@@ -103,6 +103,7 @@ function HistoryPage() {
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">
       <h1 className="text-2xl font-semibold tracking-tight">History</h1>
+      <p className="mt-1 text-sm text-muted-foreground">Showing a summary of the recent docs you've explained.</p>
 
       {loading ? (
         <div className="mt-8 flex items-center justify-center py-16 text-muted-foreground">
