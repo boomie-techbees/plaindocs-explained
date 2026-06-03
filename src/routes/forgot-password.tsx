@@ -60,7 +60,7 @@ function ForgotPasswordPage() {
       <h1 className="text-2xl font-semibold tracking-tight">Forgot password</h1>
       <p className="mt-1 text-sm text-muted-foreground">
         {step === "request"
-          ? "Enter your email and we'll send a reset code."
+          ? "Enter your email and if an account is found, we'll send a reset code."
           : `Enter the code sent to ${email} and choose a new password.`}
       </p>
 
