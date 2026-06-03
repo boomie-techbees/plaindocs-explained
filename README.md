@@ -48,7 +48,7 @@ Amazon DynamoDB (Stage 3+)
 | Amazon API Gateway | HTTP endpoint — routes POST requests from the frontend to Lambda |
 | Amazon DynamoDB | Store analysis results |
 | Bedrock Guardrails | Content safety and PII redaction |
-| Amazon Cognito *(Stage 5)* | User authentication |
+| Amazon Cognito | User authentication |
 
 ---
 
@@ -73,7 +73,7 @@ Amazon DynamoDB (Stage 3+)
 - Content safety filters and PII redaction via Bedrock Guardrails
 - Replaces the manual sensitive data warning with actual enforcement
 
-### 🔜 Stage 5 — Auth + History
+### ✅ Stage 5 — Auth + History
 - User accounts via Amazon Cognito
 - View and revisit past analyses
 
@@ -95,7 +95,9 @@ Amazon DynamoDB (Stage 3+)
 | Frontend | React (via Lovable) |
 | Backend | AWS Lambda (Python 3.14) |
 | API | Amazon API Gateway (HTTP API) |
-| AI | Amazon Bedrock — Nova Lite |
+| AI | Amazon Bedrock + Guardrails (Model: Nova Lite) |
+| Database | Amazon DynamoDB |
+| Auth | Amazon Cognito |
 | Hosting | Lovable / techbees.me |
 
 ---
