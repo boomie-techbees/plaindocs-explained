@@ -135,7 +135,7 @@ function PlainDocsPage() {
       try {
         const { fetchAuthSession } = await import("aws-amplify/auth");
         const session = await fetchAuthSession();
-        const token = session.tokens?.accessToken?.toString();
+        const token = session.tokens?.idToken?.toString();
         if (token) headers.Authorization = `Bearer ${token}`;
       } catch {
         // not signed in — proceed without auth header
