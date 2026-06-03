@@ -23,7 +23,7 @@ Most people click "agree" without reading. PlainDocs changes that — without re
 
 Supports multiple output languages including English, Spanish, French, German, Portuguese, Japanese, Chinese, Yoruba, and Krio.
 
-> **Note:** PlainDocs is not intended for sensitive or confidential documents. Do not upload documents containing personal, financial, or private information.
+> **Note:** PlainDocs includes PII redaction via Bedrock Guardrails. However, it is not intended for sensitive or confidential documents.
 
 ---
 
@@ -46,8 +46,8 @@ Amazon DynamoDB (Stage 3+)
 | Amazon Bedrock (Nova Lite) | Document analysis and plain-language summary generation |
 | AWS Lambda | Backend logic — receives document, calls Bedrock, returns structured JSON |
 | Amazon API Gateway | HTTP endpoint — routes POST requests from the frontend to Lambda |
-| Amazon DynamoDB *(Stage 3)* | Store analysis results |
-| Bedrock Guardrails *(Stage 4)* | Content safety and PII redaction |
+| Amazon DynamoDB | Store analysis results |
+| Bedrock Guardrails | Content safety and PII redaction |
 | Amazon Cognito *(Stage 5)* | User authentication |
 
 ---
@@ -69,7 +69,7 @@ Amazon DynamoDB (Stage 3+)
 - Every successful analysis saved to Amazon DynamoDB in the background
 - Captures timestamp, input type, language, and summary
 
-### 🔜 Stage 4 — Bedrock Guardrails
+### ✅ Stage 4 — Bedrock Guardrails
 - Content safety filters and PII redaction via Bedrock Guardrails
 - Replaces the manual sensitive data warning with actual enforcement
 
