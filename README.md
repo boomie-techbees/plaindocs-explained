@@ -32,13 +32,17 @@ Supports multiple output languages including English, Spanish, French, German, P
 ```
 Browser (Lovable / React)
     ↓
+Amazon Cognito (Auth)
+    ↓
 Amazon API Gateway (HTTP API)
     ↓
 AWS Lambda (Python 3.14)
     ↓
+Bedrock Guardrails
+    ↓
 Amazon Bedrock — Nova Lite
     ↓
-Amazon DynamoDB (Stage 3+)
+Amazon DynamoDB
 ```
 
 | Service | Role |
