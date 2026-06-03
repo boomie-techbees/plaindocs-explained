@@ -209,14 +209,14 @@ function PlainDocsPage() {
                 onClick={() => setIsPrivate(true)}
                 className={cn(
                   "rounded-full px-4 py-1.5 text-xs font-medium transition-colors",
-                  isPrivate ? "bg-teal text-teal-foreground" : "text-muted-foreground hover:text-foreground",
+                  isPrivate ? "bg-orange text-orange-foreground" : "text-muted-foreground hover:text-foreground",
                 )}
               >
                 🔒 Private
               </button>
             </div>
             {isPrivate && (
-              <p className="mt-2 text-xs text-muted-foreground">
+                <p className="mt-2 text-xs text-orange">
                 Your document is analyzed privately and only visible to you.
               </p>
             )}
@@ -225,7 +225,7 @@ function PlainDocsPage() {
         <section
           className={cn(
             "rounded-xl border bg-card p-6 shadow-sm",
-            isPrivate && status === "authenticated" ? "border-teal ring-1 ring-teal/30" : "border-border",
+            isPrivate && status === "authenticated" ? "border-2 border-orange" : "border-border",
           )}
         >
           <Tabs value={mode} onValueChange={(v) => setMode(v as "text" | "pdf" | "url")}>
