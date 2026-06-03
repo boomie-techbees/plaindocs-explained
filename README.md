@@ -7,7 +7,7 @@ PlainDocs is an AI-powered document explainer that breaks down legal documents, 
 Built by [Boomie of TechBees](https://techbees.me) · Part of the [TechBees app portfolio](https://techbees.me/apps)
 
 This repo has most of the code and is in sync with Lovable.
-Backend code from AWS (e.g. code for Lambdas) is at [github.com/boomie-techbees/plaindocs-backend](github.com/boomie-techbees/plaindocs-backend)
+Backend code from AWS (e.g. code for Lambdas) is at [github.com/boomie-techbees/plaindocs-backend](https://github.com/boomie-techbees/plaindocs-backend)
 
 ---
 
