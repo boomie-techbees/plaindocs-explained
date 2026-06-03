@@ -121,6 +121,7 @@ function PlainDocsPage() {
         }
         body = { url: trimmed, language };
       }
+      body.private = isPrivate;
     } catch (e) {
       const msg = e instanceof Error ? e.message : "Failed to prepare request";
       setError(msg);
