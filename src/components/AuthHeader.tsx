@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { LogOut } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 import { Button } from "@/components/ui/button";
 
@@ -21,7 +22,8 @@ export function AuthHeader() {
                 <Link to="/history">History</Link>
               </Button>
               <Button variant="outline" size="sm" onClick={() => signOut()}>
-                Sign Out
+                <span className="hidden sm:inline">Sign Out</span>
+                <LogOut className="h-4 w-4 sm:hidden" />
               </Button>
             </>
           ) : (
