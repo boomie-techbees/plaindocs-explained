@@ -7,7 +7,8 @@ export function AuthHeader() {
 
   return (
     <div className="border-b border-border bg-background">
-      <div className="mx-auto flex max-w-3xl items-center justify-end gap-2 px-6 py-2 text-sm">
+      <div className="mx-auto flex max-w-3xl items-center justify-between gap-2 px-6 py-2 text-sm">
+        <Link to="/" className="font-semibold text-foreground hover:text-teal transition-colors">
         {status === "loading" ? (
           <span className="text-xs text-muted-foreground">&nbsp;</span>
         ) : status === "authenticated" && user ? (
