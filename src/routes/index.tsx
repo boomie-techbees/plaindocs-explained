@@ -175,6 +175,7 @@ function PlainDocsPage() {
           <div className="flex items-center gap-2 text-sm font-medium uppercase tracking-[0.18em] text-teal">
             <FileSearch className="h-4 w-4" />
             PlainDocs
+            <span className="ml-1 rounded-full bg-teal/10 px-2 py-0.5 text-[10px] font-medium text-teal">Beta</span>
           </div>
           <h1 className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             Understand any document in minutes
