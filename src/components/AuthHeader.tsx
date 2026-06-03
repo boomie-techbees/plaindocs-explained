@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { LogOut } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 import { Button } from "@/components/ui/button";
 
