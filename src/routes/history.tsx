@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Loader2 } from "lucide-react";
+import { Loader2, Lock } from "lucide-react";
 import { useEffect, useState } from "react";
 import { fetchAuthSession } from "aws-amplify/auth";
 
