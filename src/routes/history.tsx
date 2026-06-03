@@ -80,7 +80,7 @@ function HistoryPage() {
 
   if (status === "loading") {
     return (
-      <main className="mx-auto flex max-w-3xl items-center justify-center px-6 py-24 text-muted-foreground">
+      <main className="mx-auto flex max-w-3xl items-center justify-center px-6 py-12 text-muted-foreground">
         <Loader2 className="h-5 w-5 animate-spin" />
       </main>
     );
@@ -88,7 +88,7 @@ function HistoryPage() {
 
   if (status === "unauthenticated") {
     return (
-      <main className="mx-auto max-w-md px-6 py-16 text-center">
+      <main className="mx-auto max-w-md px-6 py-8 text-center">
         <h1 className="text-2xl font-semibold tracking-tight">Sign in required</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           You need to sign in to view your history.
@@ -101,23 +101,23 @@ function HistoryPage() {
   }
 
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16">
+    <main className="mx-auto max-w-3xl px-6 py-8">
       <h1 className="text-2xl font-semibold tracking-tight">History</h1>
       <p className="mt-1 text-sm text-muted-foreground">Showing a summary of the recent docs you've explained.</p>
 
       {loading ? (
-        <div className="mt-8 flex items-center justify-center py-16 text-muted-foreground">
+        <div className="mt-8 flex items-center justify-center py-8 text-muted-foreground">
           <Loader2 className="h-5 w-5 animate-spin" />
         </div>
       ) : error || items.length === 0 ? (
-        <div className="mt-8 rounded-xl border border-dashed border-border bg-card p-12 text-center text-sm text-muted-foreground">
+        <div className="mt-6 rounded-xl border border-dashed border-border bg-card p-8 text-center text-sm text-muted-foreground">
           <p>No analyses yet. Go explain a document to get started.</p>
           <Button asChild className="mt-4 bg-teal text-teal-foreground hover:bg-teal/90">
             <Link to="/">Go home</Link>
           </Button>
         </div>
       ) : (
-        <ul className="mt-8 space-y-3">
+        <ul className="mt-6 space-y-3">
           {items.map((item, idx) => (
             <li
               key={item.id ?? idx}

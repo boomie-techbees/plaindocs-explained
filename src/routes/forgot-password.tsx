@@ -56,7 +56,7 @@ function ForgotPasswordPage() {
   }
 
   return (
-    <main className="mx-auto max-w-md px-6 py-16">
+    <main className="mx-auto max-w-md px-6 py-8">
       <h1 className="text-2xl font-semibold tracking-tight">Forgot password</h1>
       <p className="mt-1 text-sm text-muted-foreground">
         {step === "request"
@@ -65,7 +65,7 @@ function ForgotPasswordPage() {
       </p>
 
       {step === "request" ? (
-        <form onSubmit={handleRequest} className="mt-8 space-y-4 rounded-xl border border-border bg-card p-6 shadow-sm">
+        <form onSubmit={handleRequest} className="mt-6 space-y-4 rounded-xl border border-border bg-card p-6 shadow-sm">
           <div>
             <Label htmlFor="email">Email</Label>
             <Input id="email" type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="mt-1.5" />
@@ -79,7 +79,7 @@ function ForgotPasswordPage() {
           </p>
         </form>
       ) : (
-        <form onSubmit={handleConfirm} className="mt-8 space-y-4 rounded-xl border border-border bg-card p-6 shadow-sm">
+        <form onSubmit={handleConfirm} className="mt-6 space-y-4 rounded-xl border border-border bg-card p-6 shadow-sm">
           <div>
             <Label htmlFor="code">Confirmation code</Label>
             <Input id="code" inputMode="numeric" required value={code} onChange={(e) => setCode(e.target.value)} className="mt-1.5" />

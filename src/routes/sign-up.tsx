@@ -66,7 +66,7 @@ function SignUpPage() {
   }
 
   return (
-    <main className="mx-auto max-w-md px-6 py-16">
+    <main className="mx-auto max-w-md px-6 py-8">
       <h1 className="text-2xl font-semibold tracking-tight">
         {step === "form" ? "Create account" : "Confirm your email"}
       </h1>
@@ -77,7 +77,7 @@ function SignUpPage() {
       </p>
 
       {step === "form" ? (
-        <form onSubmit={handleSignUp} className="mt-8 space-y-4 rounded-xl border border-border bg-card p-6 shadow-sm">
+        <form onSubmit={handleSignUp} className="mt-6 space-y-4 rounded-xl border border-border bg-card p-6 shadow-sm">
           <div>
             <Label htmlFor="email">Email</Label>
             <Input id="email" type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="mt-1.5" />
@@ -99,7 +99,7 @@ function SignUpPage() {
           </p>
         </form>
       ) : (
-        <form onSubmit={handleConfirm} className="mt-8 space-y-4 rounded-xl border border-border bg-card p-6 shadow-sm">
+        <form onSubmit={handleConfirm} className="mt-6 space-y-4 rounded-xl border border-border bg-card p-6 shadow-sm">
           <div>
             <Label htmlFor="code">Confirmation code</Label>
             <Input id="code" inputMode="numeric" required value={code} onChange={(e) => setCode(e.target.value)} className="mt-1.5" />
