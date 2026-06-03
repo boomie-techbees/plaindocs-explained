@@ -10,9 +10,16 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import faviconIco from "../assets/favicon.ico.asset.json";
+import favicon16 from "../assets/favicon-16x16.png.asset.json";
+import favicon32 from "../assets/favicon-32x32.png.asset.json";
+import appleTouchIcon from "../assets/apple-touch-icon.png.asset.json";
+import icon192 from "../assets/icon-192x192.png.asset.json";
+import icon512 from "../assets/icon-512x512.png.asset.json";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { AuthProvider } from "../lib/auth-context";
 import { AuthHeader } from "../components/AuthHeader";
+
 
 function NotFoundComponent() {
   return (
@@ -96,6 +103,40 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      {
+        rel: "icon",
+        href: faviconIco.url,
+        sizes: "any",
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "16x16",
+        href: favicon16.url,
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "32x32",
+        href: favicon32.url,
+      },
+      {
+        rel: "apple-touch-icon",
+        sizes: "180x180",
+        href: appleTouchIcon.url,
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "192x192",
+        href: icon192.url,
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "512x512",
+        href: icon512.url,
       },
     ],
   }),
