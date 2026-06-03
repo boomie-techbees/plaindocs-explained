@@ -85,7 +85,9 @@ function SignUpPage() {
           <div>
             <Label htmlFor="password">Password</Label>
             <Input id="password" type="password" autoComplete="new-password" required minLength={8} value={password} onChange={(e) => setPassword(e.target.value)} className="mt-1.5" />
-            <p className="mt-1 text-xs text-muted-foreground">At least 8 characters.</p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              At least 8 characters, must include a number, a special character, an uppercase letter, and a lowercase letter.
+            </p>
           </div>
           {error && <p className="text-sm text-destructive">{error}</p>}
           <Button type="submit" disabled={loading} className="w-full bg-teal text-teal-foreground hover:bg-teal/90">
