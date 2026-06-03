@@ -1,7 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
-import { FileText, Upload, Link, Loader2, ShieldCheck, AlertTriangle, Eye, FileSearch } from "lucide-react";
+import { FileText, Upload, Link, Loader2, ShieldCheck, AlertTriangle, Eye, FileSearch, Lock } from "lucide-react";
+
+import { useAuth } from "@/lib/auth-context";
+import { cn } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -73,6 +76,8 @@ function fileToBase64(file: File): Promise<string> {
 }
 
 function PlainDocsPage() {
+  const { status } = useAuth();
+  const [isPrivate, setIsPrivate] = useState(false);
   const [mode, setMode] = useState<"text" | "pdf" | "url">("text");
   const [text, setText] = useState("");
   const [file, setFile] = useState<File | null>(null);
@@ -116,6 +121,7 @@ function PlainDocsPage() {
         }
         body = { url: trimmed, language };
       }
+      body.private = isPrivate;
     } catch (e) {
       const msg = e instanceof Error ? e.message : "Failed to prepare request";
       setError(msg);
@@ -181,7 +187,47 @@ function PlainDocsPage() {
       </header>
 
       <main className="mx-auto max-w-3xl px-6 py-6">
-        <section className="rounded-xl border border-border bg-card p-6 shadow-sm">
+        {status === "authenticated" && (
+          <div className="mb-4">
+            <div role="tablist" aria-label="Privacy mode" className="inline-flex items-center gap-1 rounded-full border border-border bg-muted/40 p-1">
+              <button
+                type="button"
+                role="tab"
+                aria-selected={!isPrivate}
+                onClick={() => setIsPrivate(false)}
+                className={cn(
+                  "rounded-full px-4 py-1.5 text-xs font-medium transition-colors",
+                  !isPrivate ? "bg-teal text-teal-foreground" : "text-muted-foreground hover:text-foreground",
+                )}
+              >
+                Standard
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={isPrivate}
+                onClick={() => setIsPrivate(true)}
+                className={cn(
+                  "rounded-full px-4 py-1.5 text-xs font-medium transition-colors",
+                  isPrivate ? "bg-teal text-teal-foreground" : "text-muted-foreground hover:text-foreground",
+                )}
+              >
+                🔒 Private
+              </button>
+            </div>
+            {isPrivate && (
+              <p className="mt-2 text-xs text-muted-foreground">
+                Your document is analyzed privately and only visible to you.
+              </p>
+            )}
+          </div>
+        )}
+        <section
+          className={cn(
+            "rounded-xl border bg-card p-6 shadow-sm",
+            isPrivate && status === "authenticated" ? "border-teal ring-1 ring-teal/30" : "border-border",
+          )}
+        >
           <Tabs value={mode} onValueChange={(v) => setMode(v as "text" | "pdf" | "url")}>
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="text" className="gap-2">
