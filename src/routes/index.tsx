@@ -76,6 +76,8 @@ function fileToBase64(file: File): Promise<string> {
 }
 
 function PlainDocsPage() {
+  const { status } = useAuth();
+  const [isPrivate, setIsPrivate] = useState(false);
   const [mode, setMode] = useState<"text" | "pdf" | "url">("text");
   const [text, setText] = useState("");
   const [file, setFile] = useState<File | null>(null);
