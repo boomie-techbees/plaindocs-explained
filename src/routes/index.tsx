@@ -125,9 +125,18 @@ function PlainDocsPage() {
 
     setLoading(true);
     try {
+      const headers: Record<string, string> = { "Content-Type": "application/json" };
+      try {
+        const { fetchAuthSession } = await import("aws-amplify/auth");
+        const session = await fetchAuthSession();
+        const token = session.tokens?.accessToken?.toString();
+        if (token) headers.Authorization = `Bearer ${token}`;
+      } catch {
+        // not signed in — proceed without auth header
+      }
       const res = await fetch(API_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers,
         body: JSON.stringify(body),
       });
       if (!res.ok) {
