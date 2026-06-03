@@ -65,7 +65,7 @@ Amazon DynamoDB (Stage 3+)
 - Detects PDF vs HTML automatically and routes accordingly
 - Improved error handling for inaccessible URLs
 
-### 🔜 Stage 3 — DynamoDB
+### ✅ Stage 3 — DynamoDB
 - Every successful analysis saved to Amazon DynamoDB in the background
 - Captures timestamp, input type, language, and summary
 
