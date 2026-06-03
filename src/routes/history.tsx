@@ -22,6 +22,7 @@ type HistoryItem = {
   input_type?: string;
   language?: string;
   timestamp?: string | number;
+  is_private?: boolean;
 };
 
 function formatTimestamp(ts?: string | number) {
