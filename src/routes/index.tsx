@@ -1,7 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
-import { FileText, Upload, Link, Loader2, ShieldCheck, AlertTriangle, Eye, FileSearch } from "lucide-react";
+import { FileText, Upload, Link, Loader2, ShieldCheck, AlertTriangle, Eye, FileSearch, Lock } from "lucide-react";
+
+import { useAuth } from "@/lib/auth-context";
+import { cn } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";

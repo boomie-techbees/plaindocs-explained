@@ -1,49 +1,23 @@
-## PlainDocs — Build Plan
+# Add Private Mode
 
-A single-page tool that explains legal documents in plain language. Clean, minimal, professional.
+## 1. `src/routes/index.tsx` — Private toggle on explainer page
 
-### Scope
+- Import `useAuth` from `@/lib/auth-context` and `Lock` from `lucide-react`.
+- Add state: `const [isPrivate, setIsPrivate] = useState(false);`
+- Only render the toggle when `status === "authenticated"`.
+- Place the toggle **above** the input card (inside `<main>`, before the `<section>`).
+- Toggle UI: a pill-style segmented control with two buttons, "Standard" and "🔒 Private". Standard selected by default. Use existing teal token (`bg-teal text-teal-foreground` for the active option, muted styling for inactive), wrapped in a rounded-full container with `border` and `bg-muted/40`, matching the app's existing accent treatment.
+- When `isPrivate` is true:
+  - Add a teal accent border to the input card: conditionally apply `border-teal` (and slight ring) to the existing `<section>` classes (currently `border-border`).
+  - Render helper text directly below the toggle: "Your document is analyzed privately and only visible to you." in `text-xs text-muted-foreground`.
+- In `handleSubmit`, after building `body`, add `body.private = isPrivate;` (so it's `true` in Private mode, `false` in Standard).
 
-One route (`/`) replacing the placeholder in `src/routes/index.tsx`. No backend work — calls the existing API directly from the browser.
+## 2. `src/routes/history.tsx` — lock icon for private analyses
 
-### Layout
+- Extend `HistoryItem` type with `is_private?: boolean;`.
+- Import `Lock` from `lucide-react`.
+- In the list item, render a small `<Lock />` icon (e.g., `h-3.5 w-3.5 text-teal`) inline next to the `summary_preview` text when `item.is_private` is true.
 
-- **Header**: "PlainDocs" wordmark + tagline "Understand any document in minutes".
-- **Input card**:
-  - Tabs (shadcn `Tabs`): "Paste text" / "Upload PDF".
-  - Text tab: large `Textarea` (paste document).
-  - PDF tab: file input (accept `application/pdf`), shows selected filename.
-  - Language `Select` dropdown (default English) — options: English, Spanish, French, German, Portuguese, Japanese, Chinese, Yoruba, Krio.
-  - "Explain This" primary button (disabled while loading or when input empty; shows spinner).
-- **Results section** (renders after success):
-  - Summary (paragraph).
-  - Key Rights, Key Risks, Watch Out For — always shown if returned.
-  - Other Notable Terms — only if array non-empty.
-  - Each list item: bullet, **bold label** — description.
+## Out of scope
 
-### API integration
-
-- Endpoint: `https://6tbzx4c751.execute-api.us-east-1.amazonaws.com/explain` (POST, JSON).
-- Text mode body: `{ text, language }`.
-- PDF mode: read file via `FileReader.readAsDataURL`, strip `data:...;base64,` prefix, send `{ document: <base64>, language }`.
-- Language sent as the human-readable name (e.g. "English").
-- Handle errors with a toast (sonner) + inline error message; clear results on new submit.
-- Client-side validation: require non-empty text or a selected PDF; cap PDF size (to 4 MB) to avoid huge payloads.
-
-### Design
-
-- Use existing semantic tokens in `src/styles.css` (neutral light theme already configured — works well for a professional doc tool). Generous whitespace, max-width ~3xl container, subtle card borders, no gradients/chatbot vibes.
-- shadcn primitives: `Tabs`, `Textarea`, `Select`, `Button`, `Card`, `Label`, `Sonner` toaster.
-- Route `head()` updated with proper title/description/OG tags for SEO.
-
-### Files
-
-- Edit `src/routes/index.tsx` — replace placeholder with the full PlainDocs UI + submit logic.
-- Edit `src/routes/__root.tsx` — mount `<Toaster />` from `@/components/ui/sonner` (if not already), update default title.
-- Possibly extract a small `ResultsSection` component inline in the same file (kept simple, no new files unless it grows).
-
-### Out of scope
-
-- No auth, no persistence, no history of past explanations.
-- No streaming — single request/response.
-- No server-side proxy (API is public and CORS-enabled per spec).
+No other behavior, layout, or styling changes. History fetch, auth flow, and request shape (besides the new `private` field) remain identical.
