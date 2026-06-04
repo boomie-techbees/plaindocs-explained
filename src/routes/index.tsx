@@ -86,6 +86,45 @@ function PlainDocsPage() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<ApiResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isShared, setIsShared] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const shared = params.get("shared");
+    if (!shared) return;
+    try {
+      const json = decodeURIComponent(escape(atob(shared)));
+      const data = JSON.parse(json) as ApiResult;
+      setResult(data);
+      setIsShared(true);
+    } catch {
+      toast.error("Invalid shared link");
+    }
+  }, []);
+
+  function handleShare() {
+    if (!result) return;
+    try {
+      const json = JSON.stringify(result);
+      const encoded = btoa(unescape(encodeURIComponent(json)));
+      const url = new URL(window.location.href);
+      url.searchParams.set("shared", encoded);
+      const shareUrl = url.toString();
+      navigator.clipboard.writeText(shareUrl);
+      toast.success("Link copied to clipboard");
+    } catch {
+      toast.error("Failed to create share link");
+    }
+  }
+
+  function handleClearShared() {
+    const url = new URL(window.location.href);
+    url.searchParams.delete("shared");
+    window.history.replaceState({}, "", url.toString());
+    setIsShared(false);
+    setResult(null);
+  }
 
   const canSubmit =
     !loading &&
