@@ -185,7 +185,7 @@ function PlainDocsPage() {
             Get a plain-language breakdown of your rights, risks, and what to watch out for.
           </p>
           <p className="mt-2 text-sm italic text-muted-foreground">
-            <span className="text-white not-italic">⚠</span> PlainDocs is not intended for regulated documents. Though identifying information is redacted by default, to analyze sensitive or confidential information, sign in and use Private Mode.
+            <span className="not-italic text-slate-800">⚠</span> PlainDocs is not intended for regulated documents. Though identifying information is redacted by default, to analyze sensitive or confidential information, sign in and use Private Mode.
           </p>
         </div>
       </header>
