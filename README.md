@@ -37,8 +37,9 @@ Amazon Cognito (Auth)
 Amazon API Gateway (HTTP API)
     ↓
 AWS Lambda (Python 3.14)
-    ↓
-Bedrock Guardrails
+    ↓               ↓
+Bedrock          Amazon Comprehend
+Guardrails       (Language Detection)
     ↓
 Amazon Bedrock — Nova Lite
     ↓
@@ -48,10 +49,11 @@ Amazon DynamoDB
 | Service | Role |
 |---|---|
 | Amazon Bedrock (Nova Lite) | Document analysis and plain-language summary generation |
+| Amazon Comprehend | Input language detection |
+| Bedrock Guardrails | Content safety and PII redaction |
 | AWS Lambda | Backend logic — receives document, calls Bedrock, returns structured JSON |
 | Amazon API Gateway | HTTP endpoint — routes POST requests from the frontend to Lambda |
 | Amazon DynamoDB | Store analysis results |
-| Bedrock Guardrails | Content safety and PII redaction |
 | Amazon Cognito | User authentication |
 
 ---
@@ -84,8 +86,9 @@ Amazon DynamoDB
 ### ✅ Stage 6 — Private Doc Mode
 - Authenticated users can analyze sensitive or confidential documents safely
 - Results stored privately per user
+- Input language detection via Amazon Comprehend
 
-### 🔜 Future Work
+### Potential Future Work
 - Scanned document support via Amazon Textract (with user-facing toggle)
 - .docx file support
 - Voice output of results
@@ -99,7 +102,7 @@ Amazon DynamoDB
 | Frontend | React (via Lovable) |
 | Backend | AWS Lambda (Python 3.14) |
 | API | Amazon API Gateway (HTTP API) |
-| AI | Amazon Bedrock + Guardrails (Model: Nova Lite) |
+| AI | Amazon Bedrock (Model: Nova Lite) + Comprehend + Guardrails |
 | Database | Amazon DynamoDB |
 | Auth | Amazon Cognito |
 | Hosting | Lovable / techbees.me |
