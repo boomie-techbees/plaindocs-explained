@@ -111,8 +111,23 @@ function PlainDocsPage() {
       const url = new URL(window.location.href);
       url.searchParams.set("shared", encoded);
       const shareUrl = url.toString();
-      navigator.clipboard.writeText(shareUrl);
-      toast.success("Link copied to clipboard");
+      const copy = async () => {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(shareUrl);
+          return;
+        }
+        const ta = document.createElement("textarea");
+        ta.value = shareUrl;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+      };
+      copy()
+        .then(() => toast.success("Link copied to clipboard"))
+        .catch(() => toast.error("Failed to copy link"));
     } catch {
       toast.error("Failed to create share link");
     }
@@ -324,9 +339,6 @@ function PlainDocsPage() {
                   onChange={(e) => setFile(e.target.files?.[0] ?? null)}
                 />
               </label>
-              <p className="mt-3 flex items-center gap-1.5 text-xs text-muted-foreground">
-                Must start with http:// or https://
-              </p>
             </TabsContent>
 
             <TabsContent value="url" className="mt-4">
