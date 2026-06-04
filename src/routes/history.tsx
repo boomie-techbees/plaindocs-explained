@@ -163,7 +163,14 @@ function HistoryPage() {
               )}
               <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground">
                 {item.input_type && <span className="uppercase tracking-wide">{item.input_type}</span>}
-                {item.language && <span>{item.language}</span>}
+                {(item.language_output || item.language) && (() => {
+                  const out = resolveLanguage(item.language_output ?? item.language);
+                  const inp = resolveLanguage(item.language_input);
+                  if (inp && out) {
+                    return <span>{inp} → {out}</span>;
+                  }
+                  return <span>{out}</span>;
+                })()}
                 {item.timestamp && <span>{formatTimestamp(item.timestamp)}</span>}
               </div>
             </li>
