@@ -53,6 +53,7 @@ function resolveLanguage(code?: string): string {
   if (!code) return "";
   return LANGUAGE_NAMES[code] ?? code;
 }
+function formatTimestamp(ts?: string | number) {
   if (!ts) return "";
   const d = typeof ts === "number" ? new Date(ts) : new Date(ts);
   if (isNaN(d.getTime())) return String(ts);
