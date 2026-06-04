@@ -111,23 +111,45 @@ function PlainDocsPage() {
       const url = new URL(window.location.href);
       url.searchParams.set("shared", encoded);
       const shareUrl = url.toString();
-      const copy = async () => {
-        if (navigator.clipboard && window.isSecureContext) {
-          await navigator.clipboard.writeText(shareUrl);
-          return;
-        }
+      const fallbackCopy = (text: string) => {
         const ta = document.createElement("textarea");
-        ta.value = shareUrl;
+        ta.value = text;
+        ta.setAttribute("readonly", "");
         ta.style.position = "fixed";
+        ta.style.top = "0";
+        ta.style.left = "0";
         ta.style.opacity = "0";
         document.body.appendChild(ta);
+        ta.focus();
         ta.select();
-        document.execCommand("copy");
+        ta.setSelectionRange(0, text.length);
+        let ok = false;
+        try {
+          ok = document.execCommand("copy");
+        } catch {
+          ok = false;
+        }
         document.body.removeChild(ta);
+        return ok;
       };
-      copy()
-        .then(() => toast.success("Link copied to clipboard"))
-        .catch(() => toast.error("Failed to copy link"));
+      const tryClipboard = async () => {
+        if (navigator.clipboard?.writeText) {
+          try {
+            await navigator.clipboard.writeText(shareUrl);
+            return true;
+          } catch {
+            // fall through
+          }
+        }
+        return fallbackCopy(shareUrl);
+      };
+      tryClipboard().then((ok) => {
+        if (ok) {
+          toast.success("Link copied to clipboard");
+        } else {
+          window.prompt("Copy this shareable link:", shareUrl);
+        }
+      });
     } catch {
       toast.error("Failed to create share link");
     }
