@@ -22,6 +22,8 @@ type HistoryItem = {
   summary_preview?: string;
   input_type?: string;
   language?: string;
+  language_input?: string;
+  language_output?: string;
   timestamp?: string | number;
   is_private?: boolean;
 };
@@ -35,6 +37,22 @@ function truncatePreview(text: string, maxLen = 160): string {
   return (lastSpace > 0 ? slice.slice(0, lastSpace) : slice).replace(/[,;:\-\s]+$/, "") + "...";
 }
 
+const LANGUAGE_NAMES: Record<string, string> = {
+  en: "English",
+  fr: "French",
+  de: "German",
+  es: "Spanish",
+  pt: "Portuguese",
+  ja: "Japanese",
+  zh: "Chinese",
+  yo: "Yoruba",
+  kri: "Krio",
+};
+
+function resolveLanguage(code?: string): string {
+  if (!code) return "";
+  return LANGUAGE_NAMES[code] ?? code;
+}
 function formatTimestamp(ts?: string | number) {
   if (!ts) return "";
   const d = typeof ts === "number" ? new Date(ts) : new Date(ts);
@@ -145,7 +163,14 @@ function HistoryPage() {
               )}
               <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground">
                 {item.input_type && <span className="uppercase tracking-wide">{item.input_type}</span>}
-                {item.language && <span>{item.language}</span>}
+                {(item.language_output || item.language) && (() => {
+                  const out = resolveLanguage(item.language_output ?? item.language);
+                  const inp = resolveLanguage(item.language_input);
+                  if (inp && out) {
+                    return <span>{inp} → {out}</span>;
+                  }
+                  return <span>{out}</span>;
+                })()}
                 {item.timestamp && <span>{formatTimestamp(item.timestamp)}</span>}
               </div>
             </li>
