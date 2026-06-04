@@ -398,9 +398,25 @@ function PlainDocsPage() {
 
         {result && (
           <section className="mt-10 space-y-6">
-            <span className="inline-flex items-center rounded-full bg-teal/10 px-3 py-1 text-xs font-medium text-teal">
-              Explained in: {language}
-            </span>
+            {isShared && (
+              <div className="flex flex-col gap-3 rounded-lg border border-teal/30 bg-teal/5 px-4 py-3 text-sm text-foreground sm:flex-row sm:items-center sm:justify-between">
+                <span>You're viewing a shared analysis from PlainDocs.</span>
+                <Button variant="outline" size="sm" onClick={handleClearShared}>
+                  Try it yourself
+                </Button>
+              </div>
+            )}
+            <div className="flex items-center justify-between gap-3">
+              <span className="inline-flex items-center rounded-full bg-teal/10 px-3 py-1 text-xs font-medium text-teal">
+                Explained in: {language}
+              </span>
+              {!isPrivate && (
+                <Button variant="outline" size="sm" onClick={handleShare} className="gap-2">
+                  <Share2 className="h-4 w-4" />
+                  Share
+                </Button>
+              )}
+            </div>
             <div className="rounded-lg border-l-4 border-l-teal bg-card p-6 shadow-sm">
               <SectionHeading icon={<FileText className="h-4 w-4" />} title="Summary" />
               <p className="mt-3 text-[15px] leading-relaxed text-foreground">
