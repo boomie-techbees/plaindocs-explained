@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { FileText, Upload, Link, Loader2, ShieldCheck, AlertTriangle, Eye, FileSearch, Lock } from "lucide-react";
+import { FileText, Upload, Link, Loader2, ShieldCheck, AlertTriangle, Eye, FileSearch, Lock, Share2 } from "lucide-react";
 
 import { useAuth } from "@/lib/auth-context";
 import { cn } from "@/lib/utils";
@@ -86,6 +86,45 @@ function PlainDocsPage() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<ApiResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isShared, setIsShared] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const shared = params.get("shared");
+    if (!shared) return;
+    try {
+      const json = decodeURIComponent(escape(atob(shared)));
+      const data = JSON.parse(json) as ApiResult;
+      setResult(data);
+      setIsShared(true);
+    } catch {
+      toast.error("Invalid shared link");
+    }
+  }, []);
+
+  function handleShare() {
+    if (!result) return;
+    try {
+      const json = JSON.stringify(result);
+      const encoded = btoa(unescape(encodeURIComponent(json)));
+      const url = new URL(window.location.href);
+      url.searchParams.set("shared", encoded);
+      const shareUrl = url.toString();
+      navigator.clipboard.writeText(shareUrl);
+      toast.success("Link copied to clipboard");
+    } catch {
+      toast.error("Failed to create share link");
+    }
+  }
+
+  function handleClearShared() {
+    const url = new URL(window.location.href);
+    url.searchParams.delete("shared");
+    window.history.replaceState({}, "", url.toString());
+    setIsShared(false);
+    setResult(null);
+  }
 
   const canSubmit =
     !loading &&
@@ -359,9 +398,25 @@ function PlainDocsPage() {
 
         {result && (
           <section className="mt-10 space-y-6">
-            <span className="inline-flex items-center rounded-full bg-teal/10 px-3 py-1 text-xs font-medium text-teal">
-              Explained in: {language}
-            </span>
+            {isShared && (
+              <div className="flex flex-col gap-3 rounded-lg border border-teal/30 bg-teal/5 px-4 py-3 text-sm text-foreground sm:flex-row sm:items-center sm:justify-between">
+                <span>You're viewing a shared analysis from PlainDocs.</span>
+                <Button variant="outline" size="sm" onClick={handleClearShared}>
+                  Try it yourself
+                </Button>
+              </div>
+            )}
+            <div className="flex items-center justify-between gap-3">
+              <span className="inline-flex items-center rounded-full bg-teal/10 px-3 py-1 text-xs font-medium text-teal">
+                Explained in: {language}
+              </span>
+              {!isPrivate && (
+                <Button variant="outline" size="sm" onClick={handleShare} className="gap-2">
+                  <Share2 className="h-4 w-4" />
+                  Share
+                </Button>
+              )}
+            </div>
             <div className="rounded-lg border-l-4 border-l-teal bg-card p-6 shadow-sm">
               <SectionHeading icon={<FileText className="h-4 w-4" />} title="Summary" />
               <p className="mt-3 text-[15px] leading-relaxed text-foreground">
