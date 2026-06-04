@@ -18,12 +18,22 @@ export const Route = createFileRoute("/history")({
 
 type HistoryItem = {
   id?: string;
+  title?: string;
   summary_preview?: string;
   input_type?: string;
   language?: string;
   timestamp?: string | number;
   is_private?: boolean;
 };
+
+function truncatePreview(text: string, maxLen = 160): string {
+  if (text.length <= maxLen) return text;
+  const slice = text.slice(0, maxLen);
+  const sentenceEnd = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("! "), slice.lastIndexOf("? "));
+  if (sentenceEnd > maxLen * 0.5) return slice.slice(0, sentenceEnd + 1);
+  const lastSpace = slice.lastIndexOf(" ");
+  return (lastSpace > 0 ? slice.slice(0, lastSpace) : slice).replace(/[,;:\-\s]+$/, "") + "...";
+}
 
 function formatTimestamp(ts?: string | number) {
   if (!ts) return "";
@@ -124,10 +134,15 @@ function HistoryPage() {
               key={item.id ?? idx}
               className="rounded-xl border border-border bg-card p-4 transition-colors hover:bg-accent/30"
             >
-              <p className="flex items-start gap-1.5 text-sm text-foreground">
+              <p className="flex items-start gap-1.5 text-sm font-medium text-foreground">
                 {item.is_private && <Lock className="mt-0.5 h-3.5 w-3.5 shrink-0 text-orange" aria-label="Private" />}
-                <span>{item.summary_preview ?? "(no summary)"}</span>
+                <span>{item.title ?? item.summary_preview ?? "(no title)"}</span>
               </p>
+              {item.title && item.summary_preview && (
+                <p className="mt-1 text-xs text-muted-foreground">
+                  {truncatePreview(item.summary_preview)}
+                </p>
+              )}
               <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground">
                 {item.input_type && <span className="uppercase tracking-wide">{item.input_type}</span>}
                 {item.language && <span>{item.language}</span>}
