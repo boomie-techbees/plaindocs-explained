@@ -22,6 +22,8 @@ type HistoryItem = {
   summary_preview?: string;
   input_type?: string;
   language?: string;
+  language_input?: string;
+  language_output?: string;
   timestamp?: string | number;
   is_private?: boolean;
 };
@@ -35,7 +37,22 @@ function truncatePreview(text: string, maxLen = 160): string {
   return (lastSpace > 0 ? slice.slice(0, lastSpace) : slice).replace(/[,;:\-\s]+$/, "") + "...";
 }
 
-function formatTimestamp(ts?: string | number) {
+const LANGUAGE_NAMES: Record<string, string> = {
+  en: "English",
+  fr: "French",
+  de: "German",
+  es: "Spanish",
+  pt: "Portuguese",
+  ja: "Japanese",
+  zh: "Chinese",
+  yo: "Yoruba",
+  kri: "Krio",
+};
+
+function resolveLanguage(code?: string): string {
+  if (!code) return "";
+  return LANGUAGE_NAMES[code] ?? code;
+}
   if (!ts) return "";
   const d = typeof ts === "number" ? new Date(ts) : new Date(ts);
   if (isNaN(d.getTime())) return String(ts);
