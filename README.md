@@ -70,7 +70,7 @@ Amazon DynamoDB
 - Improved error handling for inaccessible URLs
 
 ### ✅ Stage 3 — DynamoDB
-- Every successful analysis saved to Amazon DynamoDB in the background
+- A summary of each successful analysis saved to Amazon DynamoDB in the background
 - Captures timestamp, input type, language, and summary
 
 ### ✅ Stage 4 — Bedrock Guardrails
