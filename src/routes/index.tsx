@@ -339,9 +339,6 @@ function PlainDocsPage() {
                   onChange={(e) => setFile(e.target.files?.[0] ?? null)}
                 />
               </label>
-              <p className="mt-3 flex items-center gap-1.5 text-xs text-muted-foreground">
-                Must start with http:// or https://
-              </p>
             </TabsContent>
 
             <TabsContent value="url" className="mt-4">
