@@ -184,6 +184,9 @@ function PlainDocsPage() {
             Paste, upload, or link to any document (e.g. a contract, terms of service, policy, etc). {"\n"}
             Get a plain-language breakdown of your rights, risks, and what to watch out for.
           </p>
+          <p className="mt-2 text-sm italic text-muted-foreground">
+            ⚠️ PlainDocs is not intended for regulated documents. Though identifying information is redacted by default, to analyze sensitive or confidential information, sign in and use Private Mode.
+          </p>
         </div>
       </header>
 
@@ -217,8 +220,8 @@ function PlainDocsPage() {
               </button>
             </div>
             {isPrivate && (
-                <p className="mt-2 text-xs text-orange">
-                Your document is analyzed privately and only visible to you.
+              <p className="mt-2 text-xs text-orange">
+                Your analysis is stored privately and won't appear in any shared or public features.
               </p>
             )}
           </div>
@@ -284,8 +287,7 @@ function PlainDocsPage() {
                 />
               </label>
               <p className="mt-3 flex items-center gap-1.5 text-xs text-muted-foreground">
-                <AlertTriangle className="h-3.5 w-3.5 shrink-0" />
-                Do not upload documents containing sensitive personal information, passwords, or confidential data.
+                Must start with http:// or https://
               </p>
             </TabsContent>
 
@@ -395,8 +397,11 @@ function PlainDocsPage() {
       </main>
 
       <footer className="border-t border-border">
-        <div className="mx-auto max-w-3xl px-6 py-6 text-xs text-muted-foreground">
-          PlainDocs provides general information, not legal advice.
+        <div className="mx-auto max-w-3xl px-6 py-6 flex items-center justify-between text-xs text-muted-foreground">
+          <span>PlainDocs provides general information, not legal advice.</span>
+          <a href="https://tally.so/r/ODEQE7" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+            Help
+          </a>
         </div>
       </footer>
     </div>
