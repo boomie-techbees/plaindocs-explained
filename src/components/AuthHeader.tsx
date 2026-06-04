@@ -9,8 +9,9 @@ export function AuthHeader() {
   return (
     <div className="border-b border-border bg-background">
       <div className="mx-auto flex max-w-3xl items-center justify-between gap-2 px-6 py-2 text-sm">
-        <Link to="/" className="font-semibold text-foreground hover:text-teal transition-colors">
+        <Link to="/" className="flex items-center gap-1.5 font-semibold text-foreground hover:text-teal transition-colors">
           PlainDocs
+          <span className="rounded-full bg-teal/10 px-2 py-0.5 text-[10px] font-medium text-teal">Beta</span>
         </Link>
         <div className="flex items-center gap-2">
           {status === "loading" ? (
