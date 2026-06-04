@@ -184,9 +184,8 @@ function PlainDocsPage() {
             Paste, upload, or link to any document (e.g. a contract, terms of service, policy, etc). {"\n"}
             Get a plain-language breakdown of your rights, risks, and what to watch out for.
           </p>
-          <p className="mt-2 flex items-start gap-1.5 text-sm italic text-muted-foreground">
-            <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-white" />
-            PlainDocs is not intended for regulated documents. Though identifying information is redacted by default, to analyze sensitive or confidential information, sign in and use Private Mode.
+          <p className="mt-2 text-sm italic text-muted-foreground">
+            <span className="text-white not-italic">⚠</span> PlainDocs is not intended for regulated documents. Though identifying information is redacted by default, to analyze sensitive or confidential information, sign in and use Private Mode.
           </p>
         </div>
       </header>
