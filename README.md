@@ -87,6 +87,7 @@ Amazon DynamoDB
 - Authenticated users can analyze sensitive or confidential documents safely
 - Results stored privately per user
 - Input language detection via Amazon Comprehend
+- Added share links for nonprivate mode
 
 ### Potential Future Work
 - Scanned document support via Amazon Textract (with user-facing toggle)
