@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { FileText, Upload, Link, Loader2, ShieldCheck, AlertTriangle, Eye, FileSearch, Lock } from "lucide-react";
+import { FileText, Upload, Link, Loader2, ShieldCheck, AlertTriangle, Eye, FileSearch, Lock, Share2 } from "lucide-react";
 
 import { useAuth } from "@/lib/auth-context";
 import { cn } from "@/lib/utils";
