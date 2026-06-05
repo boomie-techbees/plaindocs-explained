@@ -64,7 +64,7 @@ function ForgotPasswordPage() {
       <p className="mt-1 text-sm text-muted-foreground">
         {step === "request"
           ? "Enter your email. If an account is found, we'll send a reset code."
-          : `Enter the code sent to ${email} and choose a new password.`}
+          : `If an account exists for ${email}, a reset code has been sent. Enter it below with a new password.`}
       </p>
 
       {step === "request" ? (
