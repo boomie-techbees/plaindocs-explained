@@ -42,14 +42,17 @@ const API_URL = "https://6tbzx4c751.execute-api.us-east-1.amazonaws.com/explain"
 const MAX_PDF_BYTES = 4 * 1024 * 1024; // 4 MB
 
 const LANGUAGES = [
+  "Arabic",
   "Chinese",
   "English",
   "French",
   "German",
+  "Hindi",
   "Japanese",
   "Krio",
   "Portuguese",
   "Spanish",
+  "Swahili",
   "Yoruba",
 ] as const;
 
@@ -487,7 +490,7 @@ function PlainDocsPage() {
       <footer className="border-t border-border">
         <div className="mx-auto max-w-3xl px-6 py-6 flex items-center justify-between text-xs text-muted-foreground">
           <span>PlainDocs provides general information, not legal advice.</span>
-          <a href="https://tally.so/r/ODEQE7" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+          <a href="https://tally.so/r/ODEQE7" target="_blank" rel="noopener noreferrer" className="text-teal underline-offset-4 hover:underline transition-colors">
             Help
           </a>
         </div>
