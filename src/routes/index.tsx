@@ -501,6 +501,9 @@ function PlainDocsPage() {
             Help
           </a>
         </div>
+        <div className="mx-auto max-w-3xl px-6 pb-6 text-center text-[11px] text-muted-foreground/60">
+          © 2026 TechBees · <a href="https://techbees.me/apps" target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline transition-colors">More apps</a>
+        </div>
       </footer>
     </div>
   );
