@@ -32,8 +32,9 @@ function SignInPage() {
     try {
       await signIn(email.trim(), password);
       navigate({ to: "/" });
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Sign in failed");
+    } catch {
+      // Use a generic message to prevent user enumeration via differing auth errors.
+      setError("Invalid email or password.");
     } finally {
       setLoading(false);
     }
