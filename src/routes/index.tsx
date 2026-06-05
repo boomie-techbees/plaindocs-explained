@@ -42,14 +42,17 @@ const API_URL = "https://6tbzx4c751.execute-api.us-east-1.amazonaws.com/explain"
 const MAX_PDF_BYTES = 4 * 1024 * 1024; // 4 MB
 
 const LANGUAGES = [
+  "Arabic",
   "Chinese",
   "English",
   "French",
   "German",
+  "Hindi",
   "Japanese",
   "Krio",
   "Portuguese",
   "Spanish",
+  "Swahili",
   "Yoruba",
 ] as const;
 
