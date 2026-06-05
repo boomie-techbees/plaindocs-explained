@@ -436,9 +436,16 @@ function PlainDocsPage() {
         {result && (
           <section className="mt-10 space-y-6">
             {isShared && (
-              <div className="flex flex-col gap-3 rounded-lg border border-teal/30 bg-teal/5 px-4 py-3 text-sm text-foreground sm:flex-row sm:items-center sm:justify-between">
-                <span>You're viewing a shared analysis from PlainDocs.</span>
-                <Button variant="outline" size="sm" onClick={handleClearShared}>
+              <div className="flex flex-col gap-3 rounded-lg border border-amber-500/40 bg-amber-500/5 px-4 py-3 text-sm text-foreground sm:flex-row sm:items-start sm:justify-between">
+                <div className="space-y-1">
+                  <p className="font-medium">You're viewing a shared analysis from PlainDocs.</p>
+                  <p className="text-xs text-muted-foreground">
+                    This content was supplied via a shared link and has not been verified by PlainDocs.
+                    Anyone can craft a shared link, so don't rely on it for legal or financial decisions —
+                    run the document through PlainDocs yourself to get a genuine analysis.
+                  </p>
+                </div>
+                <Button variant="outline" size="sm" onClick={handleClearShared} className="shrink-0">
                   Try it yourself
                 </Button>
               </div>

@@ -33,11 +33,13 @@ function ForgotPasswordPage() {
     setLoading(true);
     try {
       await resetPassword(email.trim());
-      setStep("confirm");
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Could not send reset code");
+    } catch {
+      // Swallow provider errors to prevent account enumeration.
     } finally {
       setLoading(false);
+      // Always advance to the confirm step so the response is identical whether
+      // or not an account exists for the given email.
+      setStep("confirm");
     }
   }
 
@@ -48,8 +50,9 @@ function ForgotPasswordPage() {
     try {
       await confirmResetPassword(email.trim(), code.trim(), newPassword);
       navigate({ to: "/sign-in" });
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Could not reset password");
+    } catch {
+      // Generic message — don't reveal whether the email, code, or password was the problem.
+      setError("Could not reset password. Check the code and password requirements, then try again.");
     } finally {
       setLoading(false);
     }
@@ -61,7 +64,7 @@ function ForgotPasswordPage() {
       <p className="mt-1 text-sm text-muted-foreground">
         {step === "request"
           ? "Enter your email. If an account is found, we'll send a reset code."
-          : `Enter the code sent to ${email} and choose a new password.`}
+          : `If an account exists for ${email}, a reset code has been sent. Enter it below with a new password.`}
       </p>
 
       {step === "request" ? (
