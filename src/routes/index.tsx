@@ -494,17 +494,6 @@ function PlainDocsPage() {
         )}
       </main>
 
-      <footer className="border-t border-border">
-        <div className="mx-auto max-w-3xl px-6 py-6 flex items-center justify-between text-xs text-muted-foreground">
-          <span>PlainDocs provides general information, not legal advice.</span>
-          <a href="https://tally.so/r/ODEQE7" target="_blank" rel="noopener noreferrer" className="text-teal underline-offset-4 hover:underline transition-colors">
-            Help
-          </a>
-        </div>
-        <div className="mx-auto max-w-3xl px-6 pb-6 text-center text-[11px] text-muted-foreground/60">
-          © 2026 TechBees · <a href="https://techbees.me/apps" target="_blank" rel="noopener noreferrer" className="text-teal underline-offset-4 hover:underline transition-colors">More apps</a>
-        </div>
-      </footer>
     </div>
   );
 }

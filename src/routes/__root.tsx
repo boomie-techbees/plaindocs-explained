@@ -19,6 +19,7 @@ import icon512 from "../assets/icon-512x512.png.asset.json";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { AuthProvider } from "../lib/auth-context";
 import { AuthHeader } from "../components/AuthHeader";
+import { SiteFooter } from "../components/SiteFooter";
 
 
 function NotFoundComponent() {
@@ -166,9 +167,14 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <AuthHeader />
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <Outlet />
+        <div className="flex min-h-screen flex-col">
+          <AuthHeader />
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <div className="flex-1">
+            <Outlet />
+          </div>
+          <SiteFooter />
+        </div>
       </AuthProvider>
     </QueryClientProvider>
   );
