@@ -62,8 +62,9 @@ function TermsPage() {
           <p>
             You are responsible for maintaining the security of your account
             credentials. Do not share your password. If you believe your
-            account has been compromised, contact us immediately via the help
-            form.
+            account has been compromised, contact us immediately via the
+            <a href="https://tally.so/r/ODEQE7" target="_blank" rel="noopener noreferrer" className="text-teal hover:underline">help form</a> or email
+            <a href="mailto:support@techbees.me" className="text-teal hover:underline">support@techbees.me</a>.
           </p>
           <p>You are responsible for all activity that occurs under your account.</p>
         </section>
@@ -188,8 +189,9 @@ function TermsPage() {
         <section className="space-y-4">
           <h2 className="text-xl font-semibold tracking-tight">12. Contact</h2>
           <p>
-            Questions about these Terms? Use the help form at
-            plaindocs.techbees.me or reach out through techbees.me.
+            Questions about these Terms? Use the
+            <a href="https://tally.so/r/ODEQE7" target="_blank" rel="noopener noreferrer" className="text-teal hover:underline">help form</a> or email
+            <a href="mailto:support@techbees.me" className="text-teal hover:underline">support@techbees.me</a>.
           </p>
         </section>
 
@@ -286,8 +288,9 @@ function TermsPage() {
           <p>
             PlainDocs uses Amazon Bedrock Guardrails to filter content. Some
             submissions may be declined because of this. If a legitimate
-            document is declined incorrectly, please let us know via the help
-            form — these filters are calibrated for general use and may
+            document is declined incorrectly, please let us know via the
+            <a href="https://tally.so/r/ODEQE7" target="_blank" rel="noopener noreferrer" className="text-teal hover:underline">help form</a> or email
+            <a href="mailto:support@techbees.me" className="text-teal hover:underline">support@techbees.me</a> — these filters are calibrated for general use and may
             occasionally be overly cautious.
           </p>
         </section>
@@ -304,8 +307,9 @@ function TermsPage() {
         <section className="space-y-4">
           <h2 className="text-xl font-semibold tracking-tight">Contact</h2>
           <p>
-            Questions about what is or is not acceptable? Use the help form at
-            plaindocs.techbees.me.
+            Questions about what is or is not acceptable? Use the
+            <a href="https://tally.so/r/ODEQE7" target="_blank" rel="noopener noreferrer" className="text-teal hover:underline">help form</a> or email
+            <a href="mailto:support@techbees.me" className="text-teal hover:underline">support@techbees.me</a>.
           </p>
         </section>
       </div>
