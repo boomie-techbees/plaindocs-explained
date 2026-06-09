@@ -89,8 +89,9 @@ function CookiesPage() {
         <section className="space-y-4">
           <h2 className="text-xl font-semibold tracking-tight">Questions</h2>
           <p>
-            Questions about cookies or data? Use the help form at
-            plaindocs.techbees.me.
+            Questions about cookies or data? Use the
+            <a href="https://tally.so/r/ODEQE7" target="_blank" rel="noopener noreferrer" className="text-teal hover:underline">help form</a> or email
+            <a href="mailto:support@techbees.me" className="text-teal hover:underline">support@techbees.me</a>.
           </p>
         </section>
       </div>

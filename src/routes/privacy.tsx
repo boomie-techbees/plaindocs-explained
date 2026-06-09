@@ -30,7 +30,7 @@ function PrivacyPage() {
         </p>
         <p>
           Plain English, no legal runaround. If something here is unclear,
-          reach out via the help form on the site.
+          use the <a href="https://tally.so/r/ODEQE7" target="_blank" rel="noopener noreferrer" className="text-teal hover:underline">help form</a> or email <a href="mailto:support@techbees.me" className="text-teal hover:underline">support@techbees.me</a>.
         </p>
 
         <section className="space-y-4">
@@ -158,8 +158,9 @@ function PrivacyPage() {
           </h2>
           <p>
             Your document history is retained as long as your account is
-            active. If you would like your data deleted, contact us via the
-            help form and we will remove it manually. We are working toward
+            active. If you would like your data deleted, use the
+            <a href="https://tally.so/r/ODEQE7" target="_blank" rel="noopener noreferrer" className="text-teal hover:underline">help form</a> or email
+            <a href="mailto:support@techbees.me" className="text-teal hover:underline">support@techbees.me</a> and we will remove it manually. We are working toward
             adding self-serve account deletion.
           </p>
         </section>
@@ -206,8 +207,9 @@ function PrivacyPage() {
         <section className="space-y-4">
           <h2 className="text-xl font-semibold tracking-tight">10. Contact</h2>
           <p>
-            Questions about this policy? Use the help form at
-            plaindocs.techbees.me or reach out through techbees.me.
+            Questions about this policy? Use the
+            <a href="https://tally.so/r/ODEQE7" target="_blank" rel="noopener noreferrer" className="text-teal hover:underline">help form</a> or email
+            <a href="mailto:support@techbees.me" className="text-teal hover:underline">support@techbees.me</a>.
           </p>
         </section>
       </div>
