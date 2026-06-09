@@ -30,7 +30,7 @@ function PrivacyPage() {
         </p>
         <p>
           Plain English, no legal runaround. If something here is unclear,
-          reach out via the help form on the site.
+          use the <a href="https://tally.so/r/ODEQE7" target="_blank" rel="noopener noreferrer" className="text-teal hover:underline">help form</a> or email <a href="mailto:support@techbees.me" className="text-teal hover:underline">support@techbees.me</a>.
         </p>
 
         <section className="space-y-4">
