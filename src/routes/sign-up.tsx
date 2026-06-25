@@ -39,8 +39,8 @@ function SignUpPage() {
         await signIn(email.trim(), password);
         navigate({ to: "/" });
       }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Sign up failed");
+    } catch {
+      setError("Could not create account. If this email is already registered, try signing in instead.");
     } finally {
       setLoading(false);
     }
@@ -58,8 +58,8 @@ function SignUpPage() {
       } catch {
         navigate({ to: "/sign-in" });
       }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Confirmation failed");
+    } catch {
+      setError("Could not confirm your account. Check the code and try again.");
     } finally {
       setLoading(false);
     }
