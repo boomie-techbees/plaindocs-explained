@@ -58,8 +58,8 @@ function SignUpPage() {
       } catch {
         navigate({ to: "/sign-in" });
       }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Confirmation failed");
+    } catch {
+      setError("Could not confirm your account. Check the code and try again.");
     } finally {
       setLoading(false);
     }
