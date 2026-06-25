@@ -39,8 +39,8 @@ function SignUpPage() {
         await signIn(email.trim(), password);
         navigate({ to: "/" });
       }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Sign up failed");
+    } catch {
+      setError("Could not create account. If this email is already registered, try signing in instead.");
     } finally {
       setLoading(false);
     }
