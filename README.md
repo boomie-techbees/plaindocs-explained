@@ -56,43 +56,6 @@ Amazon DynamoDB
 | Amazon DynamoDB | Store analysis results |
 | Amazon Cognito | User authentication |
 
----
-
-## Build Stages
-
-### ✅ Stage 1 — MVP
-- Paste text or upload a PDF
-- Structured plain-language output in 9 languages
-- Powered by Amazon Bedrock Nova Lite via Lambda + API Gateway
-- Built with Lovable (React frontend)
-
-### ✅ Stage 2 — URL Input
-- Paste a URL instead of uploading or copying text
-- Detects PDF vs HTML automatically and routes accordingly
-- Improved error handling for inaccessible URLs
-
-### ✅ Stage 3 — DynamoDB
-- A summary of each successful analysis saved to Amazon DynamoDB in the background
-- Captures timestamp, input type, language, and summary
-
-### ✅ Stage 4 — Bedrock Guardrails
-- Content safety filters and PII redaction via Bedrock Guardrails
-- Replaces the manual sensitive data warning with actual enforcement
-
-### ✅ Stage 5 — Auth + History
-- User accounts via Amazon Cognito
-- View and revisit past analyses
-
-### ✅ Stage 6 — Private Doc Mode
-- Authenticated users can analyze sensitive or confidential documents safely
-- Results stored privately per user
-- Input language detection via Amazon Comprehend
-- Added share links for nonprivate mode
-
-### Potential Future Work
-- Scanned document support via Amazon Textract (with user-facing toggle)
-- .docx file support
-- Voice output of results
 
 ---
 
@@ -108,6 +71,12 @@ Amazon DynamoDB
 | Auth | Amazon Cognito |
 | Hosting | Lovable / techbees.me |
 
+---
+
+## Potential Future Work
+- Scanned document support via Amazon Textract (with user-facing toggle)
+- .docx file support
+- Voice output of results
 ---
 
 ## Disclaimer
